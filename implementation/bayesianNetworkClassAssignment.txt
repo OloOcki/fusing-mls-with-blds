@@ -1,0 +1,12 @@
+MLSinput
+occupied,unoccupied
+1, 0
+CityGMLwallGR
+wallEl,nowallEl
+1, 0
+CityGMLwall
+wall,nowall
+1, 0
+CityGMLBuilding
+building, nobuilding
+1, 0
