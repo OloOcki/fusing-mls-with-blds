@@ -1,0 +1,97 @@
+net 
+{
+    node_size = (76 36);
+}
+
+node MLSinput
+{
+    label = "MLS";
+    position = (1141 460);
+    states = ("occupied"  "unoccupied");
+}
+
+node CityGMLwallGR
+{
+    label = "CityGML Wall (GR)";
+    position = (660 469);
+    states = ("wallEl"  "nowallEl");
+}
+
+node CityGMLwall
+{
+    label = "CityGML Wall";
+    position = (422 467);
+    states = ("wall"  "nowall");
+}
+
+node CityGMLBuilding
+{
+    label = "CityGML Building (GR)";
+    position = (888 474);
+    states = ("building"  "nobuilding");
+}
+
+node occupiedBldEnvelope
+{
+    label = "Occupied spaces for building envelope";
+    position = (898 303);
+    states = ("occupied"  "unoccupied");
+}
+
+node citygmlwall
+{
+    label = "Occupied spaces for wall and its elements";
+    position = (738 128);
+    states = ("occupied"  "unoccupied");
+}
+
+node OccupiedSpacesBldWalls
+{
+    label = "Occupied spaces for building walls";
+    position = (633 -33);
+    states = ("occupied"  "unoccupied");
+}
+
+potential (MLSinput |)
+{
+    data = (0.90000000 0.10000000);
+}
+
+potential (CityGMLwallGR |)
+{
+    data = (0.95000000 0.05000000);
+}
+
+potential (CityGMLwall |)
+{
+    data = (0.95000000 0.05000000);
+}
+
+potential (CityGMLBuilding |)
+{
+    data = (0.95000000 0.05000000);
+}
+
+potential (occupiedBldEnvelope | MLSinput CityGMLBuilding)
+{
+    data = (((0.95000000 0.05000000)
+        (0.05000000 0.95000000))
+        ((0.05000000 0.95000000)
+        (0.05000000 0.95000000)));
+}
+
+potential (citygmlwall | occupiedBldEnvelope CityGMLwallGR)
+{
+    data = (((0.95000000 0.05000000)
+        (0.05000000 0.95000000))
+        ((0.05000000 0.95000000)
+        (0.05000000 0.95000000)));
+}
+
+potential (OccupiedSpacesBldWalls | CityGMLwall citygmlwall)
+{
+    data = (((0.90000000 0.10000000)
+        (0.20000000 0.80000000))
+        ((0.60000000 0.40000000)
+        (0.10000000 0.90000000)));
+}
