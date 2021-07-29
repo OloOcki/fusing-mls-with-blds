@@ -1,4 +1,4 @@
-# Gluing point clouds with buildings
+# Fusing point clouds with buildings
 
 ## Implementation overview
 
